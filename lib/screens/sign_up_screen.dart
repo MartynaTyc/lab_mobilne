@@ -131,6 +131,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),),
                   child: const Text('Sign Up', style: TextStyle(fontSize: textFontSize, fontWeight: FontWeight.bold)),),),
 
+              const SizedBox(height: 120),
+              Center(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text('Already have an account ? ', style: TextStyle(fontSize: textFontSize, color: titleColor)),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Sign In', style: TextStyle(fontSize: textFontSize, fontWeight: FontWeight.bold, color: titleColor)),),
+                  ],),),
+
+              const SizedBox(height: 24),
             ],),),),);
   }
 }
