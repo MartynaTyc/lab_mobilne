@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_lab_mobilne/screens/sign_up_screen.dart';
 import 'package:projekt_lab_mobilne/screens/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 const Color titleColor = Color(0xFF471AA0);
 const Color borderColor = Color(0xFF9747FF);
@@ -55,7 +56,7 @@ class _SignInScreenState extends State<SignInScreen> {
     borderSide: const BorderSide(color: borderColor, width: borderWidth,),);
 
 
-  void signIn() {
+  Future<void> signIn() async {
     setState(() {
       if (emailController.text == correctEmail) {
         emailError = null;
@@ -71,6 +72,9 @@ class _SignInScreenState extends State<SignInScreen> {
     });
 
     if (emailError == null && passwordError == null) {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('isLoggedIn', true);
+      if (!mounted) return;
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()),);
     }
   }
