@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:projekt_lab_mobilne/database/database_helper.dart';
 import 'package:projekt_lab_mobilne/models/game.dart';
@@ -23,42 +24,37 @@ class _HomeScreenState extends State<HomeScreen> {
     loadGames();
   }
 
-  // pobieranie gier z bazy
-
+  // Pobieranie gier z bazy
   Future<void> loadGames() async {
     List<Game> list = await DatabaseHelper.getGames();
-
-    if (list.isEmpty) {
-      await DatabaseHelper.insertGame(
-        const Game(
-          title: 'The Witcher 3',
-          platform: 'PC',
-          price: 129.99,
-        ),
-      );
-
-      list = await DatabaseHelper.getGames();
-    }
 
     setState(() {
       games = list;
     });
   }
 
-
-  // wylogowanie
+  // Wylogowanie
   Future<void> logout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+
     await prefs.setBool('isLoggedIn', false);
 
     if (!mounted) return;
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const SignInScreen()),);
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SignInScreen(),
+      ),
+    );
   }
 
-  // lista gier albo napis, gdy lista jest pusta
+  // Wyświetlanie listy gier
   Widget buildList() {
     if (games.isEmpty) {
-      return const Center(child: Text('No games yet'));
+      return const Center(
+        child: Text('No games yet'),
+      );
     }
 
     return ListView.builder(
@@ -84,7 +80,10 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('My Games'),
         actions: [
-          IconButton(icon: const Icon(Icons.logout), onPressed: logout,),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: logout,
+          ),
         ],
       ),
       body: buildList(),
