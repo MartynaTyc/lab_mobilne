@@ -24,13 +24,27 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // pobieranie gier z bazy
+
   Future<void> loadGames() async {
     List<Game> list = await DatabaseHelper.getGames();
+
+    if (list.isEmpty) {
+      await DatabaseHelper.insertGame(
+        const Game(
+          title: 'The Witcher 3',
+          platform: 'PC',
+          price: 129.99,
+        ),
+      );
+
+      list = await DatabaseHelper.getGames();
+    }
 
     setState(() {
       games = list;
     });
   }
+
 
   // wylogowanie
   Future<void> logout() async {
