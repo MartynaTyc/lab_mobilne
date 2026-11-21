@@ -44,7 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Text('Back', style: TextStyle(fontSize: textFontSize, color: titleColor)),
                   ],),),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 101),
 
               const Text('Sign Up', style: TextStyle(fontSize: titleFontSize, fontWeight: FontWeight.bold, color: titleColor)),
 
@@ -54,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: TextField(
                   controller: usernameController,
                   decoration: InputDecoration(
-                    hintText: 'Username',
+                    hintText: 'Full Name',
                     hintStyle: const TextStyle(color: hintColor),
                     prefixIcon: const Icon(Icons.person_outline),
                     prefixIconColor: titleColor,
@@ -62,7 +62,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     enabledBorder: border,
                     focusedBorder: border,),),),
 
-              const SizedBox(height: fieldToField),
+              const SizedBox(height: 40),
               SizedBox(
                 height: fieldHeight,
                 child: TextField(
@@ -76,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     enabledBorder: border,
                     focusedBorder: border,),),),
 
-              const SizedBox(height: fieldToField),
+              const SizedBox(height: 40),
               SizedBox(
                 height: fieldHeight,
                 child: TextField(
@@ -94,12 +94,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         setState(() {
                           hidePassword = !hidePassword;
                         });
-                        },),
+                      },),
                     contentPadding: EdgeInsets.zero,
                     enabledBorder: border,
                     focusedBorder: border,),),),
 
-              const SizedBox(height: fieldToField),
+              const SizedBox(height: 40),
               SizedBox(
                 height: fieldHeight,
                 child: TextField(
@@ -121,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     enabledBorder: border,
                     focusedBorder: border,),),),
 
-              const SizedBox(height: forgotToButton),
+              const SizedBox(height: 80),
               SizedBox(
                 width: double.infinity,
                 height: buttonHeight,
@@ -131,7 +131,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),),
                   child: const Text('Sign Up', style: TextStyle(fontSize: textFontSize, fontWeight: FontWeight.bold)),),),
 
-              const SizedBox(height: 120),
+              const SizedBox(height: 140),
               Center(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
