@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projekt_lab_mobilne/screens/sign_up_screen.dart';
+import 'package:projekt_lab_mobilne/screens/home_screen.dart';
 
 const Color titleColor = Color(0xFF471AA0);
 const Color borderColor = Color(0xFF9747FF);
@@ -24,6 +25,10 @@ const double fieldToForgot = 40;
 const double forgotToButton = 40;
 const double socialSpace = 75;
 
+//testowe dane
+const String correctEmail = 'test@test.pl';
+const String correctPassword = '12345678';
+
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -42,9 +47,33 @@ class _SignInScreenState extends State<SignInScreen> {
 
   bool hidePassword = true;
 
+  String? emailError;
+  String? passwordError;
+
   final border = OutlineInputBorder(
     borderRadius: BorderRadius.circular(borderRadius),
     borderSide: const BorderSide(color: borderColor, width: borderWidth,),);
+
+
+  void signIn() {
+    setState(() {
+      if (emailController.text == correctEmail) {
+        emailError = null;
+      } else {
+        emailError = 'Invalid email';
+      }
+
+      if (passwordController.text == correctPassword) {
+        passwordError = null;
+      } else {
+        passwordError = 'Invalid password';
+      }
+    });
+
+    if (emailError == null && passwordError == null) {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()),);
+    }
+  }
 
 
   @override
@@ -63,6 +92,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
               const Text('Sign in', style: TextStyle(fontSize: titleFontSize, fontWeight: FontWeight.bold, color: titleColor,),),
 
+
               const SizedBox(height: titleToField),
               SizedBox(
                 height: fieldHeight,
@@ -76,6 +106,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     contentPadding: EdgeInsets.zero,
                     enabledBorder: border,
                     focusedBorder: border,),),),
+
+              if (emailError != null)
+                Text(emailError!, style: const TextStyle(fontSize: 12, color: Colors.red,),),
 
               const SizedBox(height: fieldToField),
               SizedBox(
@@ -100,17 +133,20 @@ class _SignInScreenState extends State<SignInScreen> {
                     enabledBorder: border,
                     focusedBorder: border,),),),
 
+              if (passwordError != null)
+                Text(passwordError!, style: const TextStyle(fontSize: 12, color: Colors.red,),),
+
               const SizedBox(height: fieldToForgot),
 
               const Align( alignment: Alignment.centerRight, child: Text('Forget Password ?',
-                  style: TextStyle( fontSize: textFontSize, fontWeight: FontWeight.bold, color: titleColor,),),),
+                style: TextStyle( fontSize: textFontSize, fontWeight: FontWeight.bold, color: titleColor,),),),
 
               const SizedBox(height: forgotToButton),
               SizedBox(
                 width: double.infinity,
                 height: buttonHeight,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: signIn,
                   style: ElevatedButton.styleFrom(backgroundColor: buttonColor, foregroundColor: Colors.white, elevation: 0,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius),),),
                   child: const Text('Sign in', style: TextStyle(fontSize: textFontSize, fontWeight: FontWeight.bold,),),),),
