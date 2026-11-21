@@ -19,6 +19,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     borderSide: const BorderSide(color: borderColor, width: borderWidth),
   );
 
+  final passwordController = TextEditingController();
+  final confirmController = TextEditingController();
+
+  bool hidePassword = true;
+  bool hideConfirm = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Colors.white,
@@ -66,6 +72,51 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     hintStyle: const TextStyle(color: hintColor),
                     prefixIcon: const Icon(Icons.mail_outline),
                     prefixIconColor: titleColor,
+                    contentPadding: EdgeInsets.zero,
+                    enabledBorder: border,
+                    focusedBorder: border,),),),
+
+              const SizedBox(height: fieldToField),
+              SizedBox(
+                height: fieldHeight,
+                child: TextField(
+                  controller: passwordController,
+                  obscureText: hidePassword,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    hintStyle: const TextStyle(color: hintColor),
+                    prefixIcon: const Icon(Icons.lock_outline),
+                    prefixIconColor: titleColor,
+
+                    suffixIcon: IconButton(
+                      icon: Icon(hidePassword ? Icons.visibility_off : Icons.visibility, color: titleColor),
+                      onPressed: () {
+                        setState(() {
+                          hidePassword = !hidePassword;
+                        });
+                        },),
+                    contentPadding: EdgeInsets.zero,
+                    enabledBorder: border,
+                    focusedBorder: border,),),),
+
+              const SizedBox(height: fieldToField),
+              SizedBox(
+                height: fieldHeight,
+                child: TextField(
+                  controller: confirmController,
+                  obscureText: hideConfirm,
+                  decoration: InputDecoration(
+                    hintText: 'Confirm Password',
+                    hintStyle: const TextStyle(color: hintColor),
+                    prefixIcon: const Icon(Icons.lock_outline),
+                    prefixIconColor: titleColor,
+                    suffixIcon: IconButton(
+                      icon: Icon(hideConfirm ? Icons.visibility_off : Icons.visibility, color: titleColor),
+                      onPressed: () {
+                        setState(() {
+                          hideConfirm = !hideConfirm;
+                        });
+                      },),
                     contentPadding: EdgeInsets.zero,
                     enabledBorder: border,
                     focusedBorder: border,),),),
