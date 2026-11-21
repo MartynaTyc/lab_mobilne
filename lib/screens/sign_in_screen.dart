@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:projekt_lab_mobilne/screens/sign_up_screen.dart';
 
 const Color titleColor = Color(0xFF471AA0);
 const Color borderColor = Color(0xFF9747FF);
@@ -122,7 +122,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     const Text("Don't have account ? ", style: TextStyle(fontSize: textFontSize, color: titleColor,),),
 
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpScreen()),);
+                      },
                       child: const Text('Sign Up', style: TextStyle(fontSize: textFontSize, fontWeight: FontWeight.bold, color: titleColor,),),),
                   ],),),
 
