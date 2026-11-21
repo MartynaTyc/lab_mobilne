@@ -11,6 +11,14 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+
+  final border = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(borderRadius),
+    borderSide: const BorderSide(color: borderColor, width: borderWidth),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Colors.white,
@@ -29,8 +37,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Icon(Icons.chevron_left, color: titleColor),
                     Text('Back', style: TextStyle(fontSize: textFontSize, color: titleColor)),
                   ],),),
+
               const SizedBox(height: 40),
+
               const Text('Sign Up', style: TextStyle(fontSize: titleFontSize, fontWeight: FontWeight.bold, color: titleColor)),
+
+              const SizedBox(height: titleToField),
+              SizedBox(
+                height: fieldHeight,
+                child: TextField(
+                  controller: usernameController,
+                  decoration: InputDecoration(
+                    hintText: 'Username',
+                    hintStyle: const TextStyle(color: hintColor),
+                    prefixIcon: const Icon(Icons.person_outline),
+                    prefixIconColor: titleColor,
+                    contentPadding: EdgeInsets.zero,
+                    enabledBorder: border,
+                    focusedBorder: border,),),),
+
+              const SizedBox(height: fieldToField),
+              SizedBox(
+                height: fieldHeight,
+                child: TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    hintStyle: const TextStyle(color: hintColor),
+                    prefixIcon: const Icon(Icons.mail_outline),
+                    prefixIconColor: titleColor,
+                    contentPadding: EdgeInsets.zero,
+                    enabledBorder: border,
+                    focusedBorder: border,),),),
+
             ],),),),);
   }
 }
