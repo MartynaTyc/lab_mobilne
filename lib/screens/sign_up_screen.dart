@@ -121,6 +121,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     enabledBorder: border,
                     focusedBorder: border,),),),
 
+              const SizedBox(height: forgotToButton),
+              SizedBox(
+                width: double.infinity,
+                height: buttonHeight,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(backgroundColor: buttonColor, foregroundColor: Colors.white, elevation: 0,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),),
+                  child: const Text('Sign Up', style: TextStyle(fontSize: textFontSize, fontWeight: FontWeight.bold)),),),
+
             ],),),),);
   }
 }
